@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | MakeFlow Ai Academy</title>
+    <link rel="icon" href="../images/logo_trans.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body>
+    <div class="auth-gate" id="authGate">
+        <div class="login-box">
+            <img class="login-logo" src="../images/logo_trans.png" alt="MakeFlow">
+            <h2>لوحة إدارة الأكاديمية</h2>
+            <p>سجّل الدخول لإدارة المحتوى والطلاب</p>
+            <form onsubmit="event.preventDefault(); adminLogin();">
+                <input type="password" id="adminPass" placeholder="كلمة المرور" autocomplete="current-password">
+                <button type="submit" class="btn btn-primary" style="width:100%">دخول إلى لوحة التحكم</button>
+            </form>
+            <div class="msg" id="authMsg"></div>
+        </div>
+    </div>
+
+    <div class="hidden" id="adminPanel">
+        <div class="admin-shell">
+            <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+            <aside class="admin-sidebar" id="adminSidebar">
+                <div class="sidebar-brand">
+                    <img src="../images/logo_trans.png" alt="MakeFlow">
+                    <div><strong>MakeFlow Academy</strong><span>بوابة الإدارة</span></div>
+                </div>
+                <div class="sidebar-label">القائمة الرئيسية</div>
+                <nav class="sidebar-nav">
+                    <button class="sidebar-link active" data-view="overview" onclick="switchAdminView('overview', this)">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                        نظرة عامة
+                    </button>
+                    <button class="sidebar-link" data-view="courses" onclick="switchAdminView('courses', this)">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        الدورات والملفات
+                    </button>
+                    <button class="sidebar-link" data-view="lectures" onclick="switchAdminView('lectures', this)">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        المحاضرات
+                    </button>
+                    <button class="sidebar-link" data-view="students" onclick="switchAdminView('students', this)">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+                        حسابات الطلاب
+                    </button>
+                    <button class="sidebar-link" data-view="bulk" onclick="switchAdminView('bulk', this)">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        إضافة جماعية
+                    </button>
+                    <button class="sidebar-link" data-view="certificates" onclick="switchAdminView('certificates', this)">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"/></svg>
+                        أدوات الشهادات
+                    </button>
+                    <button class="sidebar-link" data-view="files" onclick="switchAdminView('files', this)">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><path d="M9 15l3-3 3 3"/></svg>
+                        ملفات الطلاب
+                    </button>
+                </nav>
+                <div class="sidebar-footer">
+                    <button class="sidebar-logout" onclick="adminLogout()">تسجيل الخروج</button>
+                </div>
+            </aside>
+
+            <main class="admin-main">
+                <header class="admin-topbar">
+                    <div class="topbar-actions">
+                        <button class="menu-toggle" onclick="toggleSidebar()">
+                            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                        <div class="page-heading">
+                            <h1 id="adminPageTitle">نظرة عامة</h1>
+                            <p id="adminPageSubtitle">ملخص الأكاديمية وإجراءات الوصول السريع</p>
+                        </div>
+                    </div>
+                    <span class="status-pill">النظام متصل</span>
+                </header>
+
+                <div class="admin-content">
+                    <section class="admin-view active" id="view-overview">
+                        <div class="welcome-panel">
+                            <div><h2>مرحباً بك في لوحة الإدارة</h2><p>كل ما تحتاجه لإدارة الأكاديمية أصبح منظماً في مكان واحد.</p></div>
+                            <div class="welcome-date" id="todayDate"></div>
+                        </div>
+                        <div class="stat-cards">
+                            <div class="stat-card"><div class="stat-icon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div><div class="stat-num" id="totalCourses">0</div><div class="stat-label">إجمالي الدورات</div></div></div>
+                            <div class="stat-card"><div class="stat-icon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div><div class="stat-num" id="totalVideos">0</div><div class="stat-label">إجمالي المحاضرات</div></div></div>
+                            <div class="stat-card"><div class="stat-icon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg></div><div><div class="stat-num" id="totalStudents">0</div><div class="stat-label">إجمالي الطلاب</div></div></div>
+                        </div>
+                        <div class="section-heading"><div><h2>إجراءات سريعة</h2><p>ابدأ المهمة المطلوبة مباشرةً دون البحث داخل الصفحة.</p></div></div>
+                        <div class="quick-grid">
+                            <button class="quick-card" onclick="switchAdminView('lectures')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><strong>إضافة محاضرة</strong><span>ربط محاضرة جديدة بإحدى الدورات</span></button>
+                            <button class="quick-card" onclick="switchAdminView('courses')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><strong>رفع ملف للدورة</strong><span>إضافة مادة أو رابط مرفق للطلاب</span></button>
+                            <button class="quick-card" onclick="switchAdminView('students'); openStudentModal()"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg><strong>فتح حساب طالب</strong><span>إنشاء الحساب وتحديد صلاحياته</span></button>
+                            <button class="quick-card" onclick="switchAdminView('certificates')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"/></svg><strong>أدوات الشهادات</strong><span>التحقق وإنشاء رموز QR</span></button>
+                            <button class="quick-card" onclick="switchAdminView('files')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><strong>إرفاق ملف للطلاب</strong><span>رفع ملف يظهر في بوابة الطالب</span></button>
+                        </div>
+                    </section>
+
+                    <section class="admin-view" id="view-courses">
+                        <div class="section-heading"><div><h2>الدورات والملفات</h2><p>أنشئ الدورات وأرفق ملفاتها ومصادرها في نفس الخطوة.</p></div></div>
+                        <div class="admin-card">
+                            <div class="card-header"><div><h3>بيانات الدورة</h3><p>الحقول الأساسية التي ستظهر للطالب</p></div></div>
+                            <div class="form-grid">
+                                <div class="form-group"><label>اسم الدورة بالعربي</label><input type="text" id="courseNameAr" placeholder="هندسة الأوامر"></div>
+                                <div class="form-group"><label>اسم الدورة بالإنجليزي</label><input type="text" id="courseNameEn" placeholder="Prompt Engineering" dir="ltr"></div>
+                                <div class="form-group"><label>ترتيب الظهور</label><input type="number" id="courseOrder" placeholder="1" min="1"></div>
+                                <div class="form-group full"><label>نبذة عن الدورة بالعربي</label><textarea id="courseDescAr" rows="3" placeholder="وصف مختصر للدورة..."></textarea></div>
+                                <div class="form-group full"><label>نبذة عن الدورة بالإنجليزي</label><textarea id="courseDescEn" rows="3" placeholder="Brief course description..." dir="ltr"></textarea></div>
+                                <div class="form-group full"><label>رابط صورة الغلاف (اختياري)</label><input type="url" id="courseCover" placeholder="https://..." dir="ltr"></div>
+                            </div>
+                            <div class="files-editor">
+                                <label class="field-label">الملفات والمرفقات</label>
+                                <div class="hint">أضف اسم الملف ورابطه. ستظهر هذه الملفات داخل صفحة الدورة للطلاب المسموح لهم.</div>
+                                <div id="courseFilesContainer"></div>
+                                <button type="button" class="btn btn-edit" onclick="addFileRow()">+ إضافة ملف آخر</button>
+                            </div>
+                            <input type="hidden" id="editCourseId" value="">
+                            <div class="form-actions"><button class="btn btn-primary" onclick="saveCourse()">حفظ الدورة</button><button class="btn btn-edit" onclick="cancelCourseEdit()" id="cancelCourseBtn" style="display:none">إلغاء التعديل</button></div>
+                            <div class="msg" id="courseMsg"></div>
+                        </div>
+                        <div class="admin-card">
+                            <div class="card-header"><div><h3>الدورات الحالية</h3><p>عرض وتعديل المحتوى المنشور</p></div></div>
+                            <div class="table-wrap" id="coursesList"></div>
+                        </div>
+                    </section>
+
+                    <section class="admin-view" id="view-lectures">
+                        <div class="section-heading"><div><h2>إدارة المحاضرات</h2><p>أضف المحاضرات واربط كل واحدة بالدورة المناسبة.</p></div></div>
+                        <div class="admin-card">
+                            <div class="card-header"><div><h3>بيانات المحاضرة</h3><p>يدعم روابط Bunny.net وGoogle Drive وكود Embed</p></div></div>
+                            <div class="form-grid">
+                                <div class="form-group"><label>الدورة التابعة لها</label><select id="videoCourse"><option value="">-- اختر الدورة --</option></select></div>
+                                <div class="form-group"><label>العنوان بالعربي</label><input type="text" id="videoTitleAr" placeholder="مقدمة في هندسة الأوامر"></div>
+                                <div class="form-group"><label>العنوان بالإنجليزي</label><input type="text" id="videoTitleEn" placeholder="Intro to Prompt Engineering" dir="ltr"></div>
+                                <div class="form-group full"><label>رابط أو كود Embed</label><textarea id="videoUrl" rows="4" placeholder="الصق كود Embed الكامل أو الرابط" dir="ltr"></textarea></div>
+                                <div class="form-group"><label>الصورة المصغرة (اختياري)</label><input type="url" id="videoThumb" placeholder="https://..." dir="ltr"></div>
+                                <div class="form-group"><label>ترتيب المحاضرة</label><input type="number" id="videoOrder" placeholder="1" min="1"></div>
+                            </div>
+                            <input type="hidden" id="editVideoId" value="">
+                            <div class="form-actions"><button class="btn btn-primary" onclick="saveVideo()">حفظ المحاضرة</button><button class="btn btn-edit" onclick="cancelVideoEdit()" id="cancelVideoBtn" style="display:none">إلغاء التعديل</button></div>
+                            <div class="msg" id="videoMsg"></div>
+                        </div>
+                        <div class="admin-card">
+                            <div class="card-header">
+                                <div><h3>المحاضرات الحالية</h3><p>المحاضرات مرتبة بحسب رقم الظهور</p></div>
+                                <div class="compact-filter">
+                                    <label for="videoCourseFilter">فلترة حسب الدورة</label>
+                                    <select id="videoCourseFilter" onchange="renderVideos()"><option value="all">كل الدورات</option></select>
+                                </div>
+                            </div>
+                            <div class="table-wrap" id="videosList"></div>
+                        </div>
+                    </section>
+
+                    <section class="admin-view" id="view-students">
+                        <div class="section-heading">
+                            <div><h2>حسابات الطلاب</h2><p>أنشئ الحسابات وحدد الدورات المسموحة لكل طالب.</p></div>
+                            <button class="btn btn-primary" onclick="openStudentModal()">+ إضافة طالب جديد</button>
+                        </div>
+                        <div class="admin-card">
+                            <div class="card-header">
+                                <div><h3>قائمة الطلاب</h3><p>تعديل بيانات الدخول والصلاحيات أو حذف الحساب</p></div>
+                                <div class="compact-filter">
+                                    <label for="studentCourseFilter">فلترة حسب الدورة</label>
+                                    <select id="studentCourseFilter" onchange="renderStudents()"><option value="all">كل الطلاب</option></select>
+                                </div>
+                            </div>
+                            <div class="table-wrap" id="studentsList"></div>
+                        </div>
+                    </section>
+
+                    <section class="admin-view" id="view-bulk">
+                        <div class="section-heading"><div><h2>إضافة طلاب دفعة واحدة</h2><p>أنشئ عدة حسابات وحدد صلاحياتها في عملية واحدة.</p></div></div>
+                        <div class="admin-card">
+                            <div class="hint">كل سطر يمثل طالباً واحداً، بالترتيب: الاسم بالإنجليزي، الاسم بالعربي، رقم الجوال أو اسم المستخدم، كلمة المرور.</div>
+                            <div class="form-group">
+                                <label>بيانات الطلاب</label>
+                                <textarea class="bulk-textarea" id="bulkInput" rows="9" placeholder="Zaher Hassouna , زاهر حسونة , 592686691 , 352526&#10;Dalal Al-Kahlout , دلال الكحلوت , 592817406 , 236246"></textarea>
+                            </div>
+                            <div style="margin-top:18px">
+                                <label class="field-label">الدورات المسموحة لهذه الدفعة</label>
+                                <label class="check-line"><input type="checkbox" id="bulkAllowAll" checked onchange="document.getElementById('bulkCoursesCheckboxes').classList.toggle('hidden', this.checked)"><strong>السماح بكل الدورات</strong></label>
+                                <div class="checkbox-grid hidden" id="bulkCoursesCheckboxes"></div>
+                            </div>
+                            <div class="form-actions"><button class="btn btn-primary" onclick="bulkAddStudents()">إنشاء جميع الحسابات</button></div>
+                            <div class="msg" id="bulkMsg"></div>
+                            <div id="bulkResults"></div>
+                        </div>
+                    </section>
+
+                    <section class="admin-view" id="view-certificates">
+                        <div class="section-heading"><div><h2>أدوات الشهادات</h2><p>وصول منظم إلى أدوات إصدار الشهادات والتحقق منها.</p></div></div>
+                        <div class="hint">بيانات الشهادات المعروضة للطلاب مرتبطة حالياً بجدول الشهادات الخارجي. الأدوات التالية مخصصة لإنشاء رمز التحقق وفحص الشهادة المنشورة.</div>
+                        <div class="cert-tools">
+                            <a class="cert-tool" href="../verify/qr-generator.html" target="_blank"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM18 14h3"/></svg><div><h3>إنشاء رمز QR للشهادة</h3><p>افتح أداة توليد رمز التحقق لاستخدامه في تصميم الشهادة.</p></div></a>
+                            <a class="cert-tool" href="../verify/" target="_blank"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><div><h3>صفحة التحقق من الشهادة</h3><p>راجع تجربة المستخدم وتأكد من ظهور بيانات الشهادة بشكل صحيح.</p></div></a>
+                        </div>
+                    </section>
+
+                    <section class="admin-view" id="view-files">
+                        <div class="section-heading"><div><h2>ملفات الطلاب</h2><p>ارفع ملفاً أو أرفق رابطاً ويظهر مباشرة في بوابة الطلاب المحددين.</p></div></div>
+                        <div class="admin-card">
+                            <div class="card-header"><div><h3>إرفاق ملف جديد</h3><p>اختر الملف ثم حدد من سيستلمه: كل الطلاب، طلاب دورة معينة، أو طلاب محددين</p></div></div>
+                            <div class="form-grid">
+                                <div class="form-group"><label>عنوان الملف</label><input type="text" id="shareFileTitle" placeholder="مثال: دليل المشروع النهائي"></div>
+                                <div class="form-group"><label>الدورة / الورشة (اختياري)</label><select id="shareFileCourse"><option value="">-- بدون ارتباط بدورة --</option></select></div>
+                                <div class="form-group full"><label>وصف مختصر (اختياري)</label><input type="text" id="shareFileDesc" placeholder="ملاحظة تظهر للطالب بجانب الملف"></div>
+                                <div class="form-group"><label>رفع ملف من جهازك</label><input type="file" id="shareFileInput"></div>
+                                <div class="form-group"><label>أو رابط ملف جاهز</label><input type="url" id="shareFileUrl" placeholder="https://..." dir="ltr"></div>
+                            </div>
+                            <div class="hint">الحد الأقصى للملف 25 ميجابايت. عند إدخال ملف ورابط معاً سيتم اعتماد الملف المرفوع.</div>
+                            <div style="margin-top:16px">
+                                <label class="field-label">إرسال الملف إلى</label>
+                                <div class="target-options">
+                                    <label class="check-line"><input type="radio" name="shareTarget" value="all" checked onchange="updateShareTargetUI()"><strong>جميع الطلاب</strong></label>
+                                    <label class="check-line"><input type="radio" name="shareTarget" value="course" onchange="updateShareTargetUI()"><strong>طلاب دورة / ورشة معينة</strong></label>
+                                    <label class="check-line"><input type="radio" name="shareTarget" value="students" onchange="updateShareTargetUI()"><strong>طلاب محددين</strong></label>
+                                </div>
+                                <div id="shareTargetCourseWrap" class="hidden" style="margin-top:12px">
+                                    <label class="field-label">اختر الدورة / الورشة</label>
+                                    <select id="shareTargetCourse" class="full-select"></select>
+                                </div>
+                                <div id="shareTargetStudentsWrap" class="hidden" style="margin-top:12px">
+                                    <label class="field-label">اختر الطلاب</label>
+                                    <div class="checkbox-grid" id="shareStudentsCheckboxes"></div>
+                                </div>
+                            </div>
+                            <div class="form-actions"><button class="btn btn-primary" id="shareFileBtn" onclick="saveSharedFile()">رفع وإرسال الملف</button></div>
+                            <div class="msg" id="shareFileMsg"></div>
+                        </div>
+                        <div class="admin-card">
+                            <div class="card-header"><div><h3>الملفات المرسلة</h3><p>كل الملفات التي أُرسلت للطلاب مع إمكانية حذفها</p></div></div>
+                            <div class="table-wrap" id="sharedFilesList"></div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="studentModal" onclick="if(event.target===this)closeStudentModal()">
+        <div class="modal-dialog">
+            <div class="modal-header"><h2 id="studentModalTitle">إضافة طالب</h2><button class="modal-close" onclick="closeStudentModal()">✕</button></div>
+            <div class="form-grid two-columns">
+                <div class="form-group"><label>اسم المستخدم</label><input type="text" id="inputUsername" placeholder="ahmed"></div>
+                <div class="form-group"><label>كلمة المرور</label><input type="text" id="inputPassword" placeholder="6 أحرف على الأقل"></div>
+                <div class="form-group"><label>الاسم بالعربي</label><input type="text" id="inputNameAr" placeholder="أحمد محمد"></div>
+                <div class="form-group"><label>الاسم بالإنجليزي</label><input type="text" id="inputNameEn" placeholder="Ahmed Mohammed" dir="ltr"></div>
+            </div>
+            <label class="field-label">الدورات المسموحة</label>
+            <label class="check-line"><input type="checkbox" id="allowAll" checked onchange="toggleAllCourses()"><strong>السماح بكل الدورات</strong></label>
+            <div class="checkbox-grid hidden" id="coursesCheckboxes"></div>
+            <div class="form-actions"><button class="btn btn-primary" style="width:100%" onclick="saveStudent()">حفظ حساب الطالب</button></div>
+            <div class="msg" id="saveMsg"></div>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="studentDetailsModal" onclick="if(event.target===this)closeStudentDetails()">
+        <div class="modal-dialog modal-wide">
+            <div class="modal-header"><div><h2 id="studentDetailsTitle">بيانات الطالب</h2><p class="modal-subtitle" id="studentDetailsUsername"></p></div><button class="modal-close" onclick="closeStudentDetails()">✕</button></div>
+            <div id="studentDetailsContent"></div>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="certificateModal" onclick="if(event.target===this)closeCertificateModal()">
+        <div class="modal-dialog">
+            <div class="modal-header"><div><h2>رفع شهادة للطالب</h2><p class="modal-subtitle" id="certificateStudentName"></p></div><button class="modal-close" onclick="closeCertificateModal()">✕</button></div>
+            <input type="hidden" id="certificateUsername">
+            <div class="form-grid two-columns">
+                <div class="form-group full"><label>الدورة</label><select id="certificateCourse"><option value="">-- اختر الدورة --</option></select></div>
+                <div class="form-group"><label>رقم الشهادة (اختياري)</label><input type="text" id="certificateCode" placeholder="MFA-2026-001" dir="ltr"></div>
+                <div class="form-group"><label>تاريخ الإصدار</label><input type="date" id="certificateIssueDate"></div>
+                <div class="form-group full"><label>ملف الشهادة PDF أو صورة</label><input type="file" id="certificateFile" accept=".pdf,image/*"></div>
+                <div class="form-group full"><label>أو رابط الشهادة</label><input type="url" id="certificateUrl" placeholder="https://..." dir="ltr"></div>
+            </div>
+            <div class="hint">يمكنك اختيار ملف من جهازك أو لصق رابط جاهز. عند اختيار الاثنين سيتم اعتماد الملف المرفوع.</div>
+            <div class="form-actions"><button class="btn btn-primary" id="saveCertificateBtn" onclick="saveStudentCertificate()">رفع وحفظ الشهادة</button></div>
+            <div class="msg" id="certificateMsg"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+    <script src="admin.js?v=15"></script>
+</body>
+</html>

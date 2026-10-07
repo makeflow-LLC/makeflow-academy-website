@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورشة الريلز بالذكاء الاصطناعي — أكاديمية MakeFlow</title>
+<link rel="icon" href="images/trans.png" type="image/png">
+<meta name="description" content="ورشة عملية لمدة ساعتين: تعلّم صناعة مقاطع الريلز بالذكاء الاصطناعي، تمديد المقاطع، تحريك الصور، وفيديوهات الفريم الأول والأخير — مع كريدت على منصة Imagen وعضوية VIP للدعم. 9 دولار فقط.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D3B4C;
+    --navy-deep: #082330;
+    --navy-soft: #164658;
+    --blue: #1D85B8;
+    --blue-deep: #16688E;
+    --teal: #3DB3BC;
+    --teal-soft: #7FCDD3;
+    --white: #FFFFFF;
+    --paper: #FAFBFC;
+    --paper-warm: #F5F7F8;
+    --border: #E5E9EB;
+    --border-soft: #EEF1F3;
+    --gray-700: #3A4A52;
+    --gray-500: #6B7A82;
+    --green: #25D366;
+    --grad-brand: linear-gradient(135deg, #3DB3BC 0%, #1D85B8 100%);
+    --grad-brand-soft: linear-gradient(135deg, rgba(61,179,188,0.08) 0%, rgba(29,133,184,0.08) 100%);
+    --shadow-card: 0 1px 2px rgba(13,59,76,0.04), 0 8px 24px rgba(13,59,76,0.06);
+    --shadow-card-hover: 0 4px 8px rgba(13,59,76,0.06), 0 24px 48px rgba(13,59,76,0.12);
+    --radius: 20px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Tajawal', 'Manrope', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  body[data-lang="en"] { direction: ltr; font-family: 'Manrope', 'Tajawal', sans-serif; }
+  ::selection { background: rgba(61,179,188,0.25); }
+
+  /* language switching */
+  body[data-lang="ar"] .lang-en { display: none !important; }
+  body[data-lang="en"] .lang-ar { display: none !important; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .nav-brand { display: flex; align-items: center; text-decoration: none; }
+  .nav-brand img { height: 38px; width: auto; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--gray-700); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-actions { display: flex; align-items: center; gap: 14px; }
+
+  .lang-toggle { display: flex; background: var(--paper-warm); border: 1px solid var(--border); border-radius: 100px; padding: 3px; }
+  .lang-toggle button {
+    border: none; background: transparent; padding: 6px 14px; border-radius: 100px;
+    font-size: 12.5px; font-weight: 700; cursor: pointer; color: var(--gray-500);
+    font-family: inherit; transition: all 0.25s;
+  }
+  .lang-toggle button.active { background: var(--navy); color: var(--white); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 26px; border-radius: 100px; font-size: 15px; font-weight: 700;
+    text-decoration: none; cursor: pointer; border: none; font-family: inherit;
+    transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap;
+  }
+  .btn-primary { background: var(--grad-brand); color: var(--white); box-shadow: 0 4px 16px rgba(29,133,184,0.28); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(29,133,184,0.36); }
+  .btn-whatsapp { background: var(--green); color: var(--white); box-shadow: 0 4px 16px rgba(37,211,102,0.3); }
+  .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+  .btn-lg { padding: 16px 32px; font-size: 16.5px; }
+  .nav-cta { padding: 10px 22px; font-size: 14px; }
+
+  /* ============ HERO ============ */
+  .hero { background: var(--navy-deep); position: relative; overflow: hidden; color: var(--white); }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 75% at 85% 10%, rgba(61,179,188,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 65% at 5% 95%, rgba(29,133,184,0.2) 0%, transparent 60%);
+  }
+  .hero-inner {
+    max-width: 1240px; margin: 0 auto; padding: 80px 28px 92px; position: relative;
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center;
+  }
+  .breadcrumb {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px;
+    color: rgba(255,255,255,0.55); margin-bottom: 24px; text-decoration: none; transition: color 0.2s;
+  }
+  .breadcrumb:hover { color: var(--teal-soft); }
+
+  .badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .badge {
+    font-size: 12.5px; font-weight: 800; padding: 6px 15px; border-radius: 100px;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.85);
+  }
+  .badge-live { background: rgba(61,179,188,0.18); border-color: transparent; color: var(--teal-soft); }
+
+  .hero h1 { font-size: clamp(32px, 4.4vw, 54px); font-weight: 900; line-height: 1.3; margin-bottom: 20px; letter-spacing: -0.5px; }
+  .hero h1 em { font-style: normal; background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-desc { font-size: 17.5px; color: rgba(255,255,255,0.75); line-height: 1.9; margin-bottom: 34px; max-width: 580px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .hero-price { display: flex; align-items: baseline; gap: 8px; margin-inline-start: 6px; }
+  .hero-price b { font-size: 36px; font-weight: 900; line-height: 1; }
+  .hero-price span { font-size: 14px; color: rgba(255,255,255,0.6); }
+
+  .hero-visual { display: flex; align-items: center; justify-content: center; }
+  .reel-frame {
+    width: 230px; aspect-ratio: 9 / 16; border-radius: 34px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    backdrop-filter: blur(10px); position: relative; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px; color: var(--teal-soft);
+    animation: floaty 5s ease-in-out infinite;
+  }
+  .reel-frame::before { content: ""; position: absolute; inset: -14px; border-radius: 46px; border: 1.5px dashed rgba(61,179,188,0.35); }
+  .reel-frame .reel-label { font-size: 13px; font-weight: 800; color: rgba(255,255,255,0.8); letter-spacing: 0.5px; }
+  .reel-frame .reel-bar { position: absolute; bottom: 22px; inset-inline: 22px; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.14); overflow: hidden; }
+  .reel-frame .reel-bar::after { content: ""; display: block; height: 100%; width: 40%; background: var(--grad-brand); border-radius: 4px; animation: progress 3.2s ease-in-out infinite; }
+  @keyframes progress { 0% { width: 8%; } 100% { width: 100%; } }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+  }
+
+  /* ============ CONTENT ============ */
+  .content-wrap {
+    max-width: 1240px; margin: 0 auto; padding: 80px 28px;
+    display: grid; grid-template-columns: 1fr 360px; gap: 48px; align-items: start;
+  }
+  .content-block { margin-bottom: 56px; }
+  .content-block:last-child { margin-bottom: 0; }
+  .block-title { font-size: 26px; font-weight: 900; color: var(--navy-deep); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .block-title::before { content: ""; width: 6px; height: 28px; background: var(--grad-brand); border-radius: 4px; flex-shrink: 0; }
+
+  .outcomes-list { display: flex; flex-direction: column; gap: 14px; }
+  .outcome-item {
+    display: flex; gap: 14px; align-items: flex-start; background: var(--paper);
+    border: 1px solid var(--border-soft); border-radius: 14px; padding: 18px 20px;
+    font-size: 15.5px; color: var(--gray-700); line-height: 1.8;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .outcome-item:hover { border-color: rgba(61,179,188,0.4); transform: translateX(-4px); }
+  body[data-lang="en"] .outcome-item:hover { transform: translateX(4px); }
+  .outcome-item strong { color: var(--navy-deep); font-weight: 800; }
+  .outcome-check {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--grad-brand); color: var(--white);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+
+  .module {
+    display: flex; gap: 20px; padding: 26px; background: var(--white);
+    border: 1px solid var(--border-soft); border-radius: var(--radius); margin-bottom: 16px;
+    box-shadow: var(--shadow-card); transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .module:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+  .module-num {
+    width: 48px; height: 48px; border-radius: 14px; background: var(--grad-brand-soft);
+    border: 1px solid rgba(61,179,188,0.25); color: var(--blue-deep); font-size: 18px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'JetBrains Mono', monospace;
+  }
+  .module-title { font-size: 17.5px; font-weight: 800; color: var(--navy-deep); margin-bottom: 6px; }
+  .module-desc { font-size: 14.5px; color: var(--gray-500); line-height: 1.8; }
+
+  .audience-box {
+    background: var(--grad-brand-soft); border: 1px solid rgba(61,179,188,0.25);
+    border-radius: var(--radius); padding: 28px; font-size: 16px; color: var(--navy-soft); line-height: 1.9;
+  }
+
+  .instructor-card {
+    display: flex; gap: 22px; align-items: center; background: var(--paper);
+    border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 24px;
+  }
+  .instructor-card img { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--white); box-shadow: var(--shadow-card); }
+  .instructor-card h3 { font-size: 20px; font-weight: 900; color: var(--navy-deep); }
+  .instructor-card p { font-size: 14.5px; color: var(--gray-500); margin-top: 2px; }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 20px; }
+  .enroll-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow-card-hover); }
+  .enroll-price-label { font-size: 13px; font-weight: 700; color: var(--gray-500); margin-bottom: 8px; }
+  .enroll-price { font-size: 44px; font-weight: 900; color: var(--navy-deep); line-height: 1; margin-bottom: 6px; }
+  .enroll-price small { font-size: 15px; font-weight: 700; color: var(--gray-500); }
+  .enroll-note { font-size: 13px; color: var(--gray-500); margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px dashed var(--border); }
+  .enroll-includes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+  .enroll-include { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--gray-700); font-weight: 600; line-height: 1.6; }
+  .enroll-include svg { color: var(--teal); flex-shrink: 0; margin-top: 3px; }
+  .enroll-card .btn { width: 100%; }
+
+  /* ============ FOOTER ============ */
+  footer { background: var(--navy-deep); border-top: 1px solid rgba(255,255,255,0.08); }
+  .footer-inner { max-width: 1240px; margin: 0 auto; padding: 44px 28px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .footer-inner img { height: 32px; width: auto; filter: brightness(0) invert(1); }
+  .footer-copy { font-size: 13px; color: rgba(255,255,255,0.45); }
+  .footer-contact { display: flex; gap: 18px; align-items: center; }
+  .footer-contact a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13.5px; transition: color 0.2s; }
+  .footer-contact a:hover { color: var(--teal-soft); }
+
+  /* mobile sticky CTA */
+  .mobile-cta { display: none; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { display: none; }
+    .content-wrap { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+  }
+  @media (max-width: 720px) {
+    .nav-links, .nav-cta { display: none; }
+    .hero-inner { padding: 52px 22px 60px; }
+    .content-wrap { padding: 56px 22px 100px; }
+    .footer-inner { justify-content: center; text-align: center; }
+    .instructor-card { flex-direction: column; text-align: center; }
+    .mobile-cta {
+      display: flex; position: fixed; bottom: 14px; inset-inline: 16px; z-index: 90;
+      justify-content: center; box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+    }
+  }
+</style>
+</head>
+<body data-lang="ar">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="images/academy_logo_dark.png" alt="MakeFlow AI Academy">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#tracks"><span class="lang-ar">المسارات</span><span class="lang-en">Tracks</span></a></li>
+      <li><a href="index.html#instructors"><span class="lang-ar">المدربون</span><span class="lang-en">Instructors</span></a></li>
+      <li><a href="verify/"><span class="lang-ar">تحقق من شهادة</span><span class="lang-en">Verify Certificate</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="active" data-lang-btn="ar" onclick="setLang('ar')">عربي</button>
+        <button data-lang-btn="en" onclick="setLang('en')">EN</button>
+      </div>
+      <a class="btn btn-primary nav-cta" href="#" data-wa="enroll" target="_blank" rel="noopener">
+        <span class="lang-ar">سجّل في الورشة</span><span class="lang-en">Join the Workshop</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <a href="index.html" class="breadcrumb">
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          <span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span>
+        </a>
+        <div class="badges">
+          <span class="badge badge-live"><span class="lang-ar">ورشة عملية مباشرة</span><span class="lang-en">Live hands-on workshop</span></span>
+          <span class="badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+            <span class="lang-ar">ساعتان</span><span class="lang-en">2 hours</span>
+          </span>
+        </div>
+        <h1>
+          <span class="lang-ar">ورشة صناعة <em>الريلز</em> بالذكاء الاصطناعي</span>
+          <span class="lang-en">Make <em>Reels</em> with AI — Workshop</span>
+        </h1>
+        <p class="hero-desc">
+          <span class="lang-ar">ورشة تدخل في الموضوع مباشرة: تتعلّم في ساعتين كيف تصنع مقاطع ريلز احترافية بالذكاء الاصطناعي، وتخرج بمقاطعك الأولى جاهزة للنشر — مع كريدت جاهز على منصة Imagen.</span>
+          <span class="lang-en">A straight-to-the-point session: in two hours you'll learn to create professional AI reels and walk out with your first clips ready to publish — with credits already loaded on the Imagen platform.</span>
+        </p>
+        <div class="hero-ctas">
+          <a href="#" data-wa="enroll" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <span class="lang-ar">سجّل الآن عبر واتساب</span><span class="lang-en">Register via WhatsApp</span>
+          </a>
+          <div class="hero-price">
+            <b dir="ltr">$9</b>
+            <span class="lang-ar">فقط</span><span class="lang-en">only</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="reel-frame" aria-hidden="true">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><polygon points="10 8.5 16 12 10 15.5 10 8.5" fill="currentColor"/></svg>
+          <span class="reel-label">AI REELS</span>
+          <span class="reel-bar"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="content-wrap">
+    <div>
+      <!-- What you learn -->
+      <div class="content-block">
+        <h2 class="block-title"><span class="lang-ar">ماذا ستتعلّم في الورشة؟</span><span class="lang-en">What you'll learn</span></h2>
+        <div class="outcomes-list" id="learnList"></div>
+      </div>
+
+      <!-- Format -->
+      <div class="content-block">
+        <h2 class="block-title"><span class="lang-ar">كيف تسير الورشة؟</span><span class="lang-en">How the workshop runs</span></h2>
+        <div id="formatList"></div>
+      </div>
+
+      <!-- Audience -->
+      <div class="content-block">
+        <h2 class="block-title"><span class="lang-ar">لمن هذه الورشة؟</span><span class="lang-en">Who is it for?</span></h2>
+        <div class="audience-box">
+          <span class="lang-ar">لصنّاع المحتوى، أصحاب المشاريع والمتاجر، والمسوّقين الذين يريدون إنتاج مقاطع ريلز جذابة بسرعة وبتكلفة قليلة بدون كاميرا أو خبرة مونتاج — ولا تحتاج أي خلفية سابقة في الذكاء الاصطناعي.</span>
+          <span class="lang-en">For content creators, business and store owners, and marketers who want to produce engaging reels fast and cheaply — no camera or editing experience needed, and no prior AI background required.</span>
+        </div>
+      </div>
+
+      <!-- Instructor -->
+      <div class="content-block">
+        <h2 class="block-title"><span class="lang-ar">المدرّب</span><span class="lang-en">Your instructor</span></h2>
+        <div class="instructor-card">
+          <img src="images/jihad.png" alt="Jihad Hijazi">
+          <div>
+            <h3><span class="lang-ar">جهاد حجازي</span><span class="lang-en">Jihad Hijazi</span></h3>
+            <p><span class="lang-ar">مدرّب في أكاديمية MakeFlow للذكاء الاصطناعي</span><span class="lang-en">Instructor at MakeFlow AI Academy</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="enroll-card">
+        <div class="enroll-price-label"><span class="lang-ar">رسوم الورشة</span><span class="lang-en">Workshop fee</span></div>
+        <div class="enroll-price" dir="ltr">$9</div>
+        <div class="enroll-note"><span class="lang-ar">دفعة واحدة · ساعتان عملي</span><span class="lang-en">One-time payment · 2 practical hours</span></div>
+        <div class="enroll-includes" id="includesList"></div>
+        <a href="#" data-wa="enroll" target="_blank" rel="noopener" class="btn btn-whatsapp">
+          <span class="lang-ar">سجّل الآن عبر واتساب</span><span class="lang-en">Register via WhatsApp</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html"><img src="images/academy_logo_dark.png" alt="MakeFlow AI Academy"></a>
+    <div class="footer-copy">
+      <span class="lang-ar">© 2025–2026 أكاديمية MakeFlow للذكاء الاصطناعي · جميع الحقوق محفوظة</span>
+      <span class="lang-en">© 2025–2026 MakeFlow AI Academy · All rights reserved</span>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:contact@makeflow.tech">contact@makeflow.tech</a>
+      <a href="https://www.facebook.com/aiacademymakeflow" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/aiacademymakeflow" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<a href="#" data-wa="enroll" target="_blank" rel="noopener" class="btn btn-whatsapp mobile-cta">
+  <span class="lang-ar">سجّل في الورشة — $9</span><span class="lang-en">Join the workshop — $9</span>
+</a>
+
+<script src="tracks-data.js"></script>
+<script>
+  const CHECK = '<span class="outcome-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>';
+  const CHECK_SM = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  const DATA = {
+    learn: [
+      { ar: "<strong>صناعة مقاطع الريلز</strong> بالذكاء الاصطناعي من الفكرة حتى المقطع الجاهز.", en: "<strong>Creating reels</strong> with AI, from idea to a finished clip." },
+      { ar: "<strong>تمديد المقاطع</strong> لتحصل على فيديو أطول وأكثر سلاسة.", en: "<strong>Extending clips</strong> to get longer, smoother videos." },
+      { ar: "<strong>تعديل الفيديو</strong> وتحسين النتيجة النهائية.", en: "<strong>Editing video</strong> and polishing the final result." },
+      { ar: "<strong>تحريك الصور</strong> وتحويلها إلى فيديوهات حيّة.", en: "<strong>Animating images</strong> into living video." },
+      { ar: "<strong>فيديوهات الفريم الأول والأخير</strong> (First Frame / Last Frame) للتحكم الكامل بمسار الحركة.", en: "<strong>First-frame / last-frame videos</strong> for full control over the motion." }
+    ],
+    format: [
+      { ar: ["ساعتان عملي", "ندخل في الموضوع مباشرة بدون مقدمات طويلة — تطبّق معنا خطوة بخطوة."], en: ["2 practical hours", "We get straight to the point with no long intros — you follow along step by step."] },
+      { ar: ["كريدت جاهز على منصة Imagen", "تحصل على رصيد يكفي لصناعة 10 مقاطع ريلز لتطبّق وتتدرّب بنفسك."], en: ["Credits on Imagen", "You get enough credit to produce 10 reels so you can practice on your own."] },
+      { ar: ["تسجيل المحاضرة", "يتم تسجيل المحاضرة وإرسالها لك لتعود إليها في أي وقت."], en: ["Recording included", "The session is recorded and sent to you so you can revisit it any time."] }
+    ],
+    includes: [
+      { ar: "ورشة عملية مدتها ساعتان", en: "2-hour hands-on workshop" },
+      { ar: "كريدت على منصة Imagen يكفي لصناعة 10 مقاطع ريلز", en: "Imagen credits — enough for 10 reels" },
+      { ar: "عضوية في مجموعة واتساب VIP للدعم الفني المباشر", en: "Membership in the VIP WhatsApp group for live technical support" },
+      { ar: "تسجيل المحاضرة يصلك بعد الورشة", en: "Session recording sent to you" }
+    ]
+  };
+
+  const MSG = {
+    ar: "مرحباً، أريد التسجيل في ورشة الريلز بالذكاء الاصطناعي ($9)",
+    en: "Hello, I want to register for the AI Reels workshop ($9)"
+  };
+
+  let lang = "ar";
+
+  function waLink() {
+    return `https://wa.me/${window.ACADEMY.whatsapp}?text=${encodeURIComponent(MSG[lang])}`;
+  }
+
+  function span(o) { return `<span class="lang-ar">${o.ar}</span><span class="lang-en">${o.en}</span>`; }
+
+  function build() {
+    document.getElementById("learnList").innerHTML = DATA.learn.map(o =>
+      `<div class="outcome-item">${CHECK}<div>${span(o)}</div></div>`).join("");
+
+    document.getElementById("formatList").innerHTML = DATA.format.map((m, i) => `
+      <div class="module">
+        <div class="module-num">${String(i + 1).padStart(2, "0")}</div>
+        <div>
+          <div class="module-title">${span({ ar: m.ar[0], en: m.en[0] })}</div>
+          <div class="module-desc">${span({ ar: m.ar[1], en: m.en[1] })}</div>
+        </div>
+      </div>`).join("");
+
+    document.getElementById("includesList").innerHTML = DATA.includes.map(o =>
+      `<div class="enroll-include">${CHECK_SM}<div>${span(o)}</div></div>`).join("");
+  }
+
+  function setLang(l) {
+    lang = l;
+    document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = l;
+    document.body.dataset.lang = l;
+    document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.toggle("active", b.dataset.langBtn === l));
+    document.querySelectorAll(".arrow").forEach(a => a.style.transform = `scaleX(${l === "ar" ? 1 : -1})`);
+    document.querySelectorAll("[data-wa]").forEach(a => a.href = waLink());
+    document.title = l === "ar" ? "ورشة الريلز بالذكاء الاصطناعي — أكاديمية MakeFlow" : "AI Reels Workshop — MakeFlow AI Academy";
+  }
+
+  build();
+  setLang("ar");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | MakeFlow Ai Academy</title>
+    <link rel="icon" href="../images/logo_trans.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">EN</button>
+
+    <div class="container">
+        <header class="header">
+            <img src="../images/logo_trans.png" alt="MakeFlow Ai Academy" class="logo">
+            <h1 class="title" data-ar="بوابة الطالب" data-en="Student Portal">بوابة الطالب</h1>
+            <p class="subtitle" data-ar="سجّل دخولك للوصول إلى محاضراتك" data-en="Sign in to access your lectures">سجّل دخولك للوصول إلى محاضراتك</p>
+        </header>
+
+        <div class="login-section">
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label data-ar="اسم المستخدم" data-en="Username">اسم المستخدم</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        class="login-input"
+                        placeholder="أدخل اسم المستخدم"
+                        data-placeholder-ar="أدخل اسم المستخدم"
+                        data-placeholder-en="Enter your username"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+                <div class="input-group">
+                    <label data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+                    <div class="password-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="login-input"
+                            placeholder="أدخل كلمة المرور"
+                            data-placeholder-ar="أدخل كلمة المرور"
+                            data-placeholder-en="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+                        <button type="button" class="toggle-pass" onclick="togglePassword()">
+                            <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span data-ar="تسجيل الدخول" data-en="Sign In">تسجيل الدخول</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                        <polyline points="10 17 15 12 10 7"/>
+                        <line x1="15" y1="12" x2="3" y2="12"/>
+                    </svg>
+                </button>
+            </form>
+            <div class="error-msg hidden" id="errorMsg"></div>
+        </div>
+
+        <footer class="footer">
+            <p data-ar="© 2026 MakeFlow Ai Academy. جميع الحقوق محفوظة" data-en="© 2026 MakeFlow Ai Academy. All rights reserved">© 2026 MakeFlow Ai Academy. جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="app.js?v=4"></script>
+</body>
+</html>

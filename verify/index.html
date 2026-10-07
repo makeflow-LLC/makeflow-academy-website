@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحقق من الشهادة | MakeFlow Ai Academy</title>
+    <link rel="icon" href="../images/logo_trans.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">EN</button>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="../images/logo_trans.png" alt="MakeFlow Ai Academy" class="logo">
+            <h1 class="title" data-ar="التحقق من صحة الشهادة" data-en="Certificate Verification">التحقق من صحة الشهادة</h1>
+            <p class="subtitle" data-ar="تحقق من صحة الشهادة الصادرة من أكاديمية MakeFlow Ai" data-en="Verify certificates issued by MakeFlow Ai Academy">تحقق من صحة الشهادة الصادرة من أكاديمية MakeFlow Ai</p>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="certCode" 
+                    class="search-input" 
+                    placeholder="أدخل رقم الشهادة مثال: MFA-PEWA-2026-0009"
+                    data-placeholder-ar="أدخل رقم الشهادة مثال: MFA-PEWA-2026-0009"
+                    data-placeholder-en="Enter certificate code e.g: MFA-PEWA-2026-0009"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <button class="search-btn" onclick="verifyCertificate()" id="searchBtn">
+                    <span data-ar="تحقق" data-en="Verify">تحقق</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg>
+                </button>
+            </div>
+            <p class="search-hint" data-ar="رقم الشهادة موجود في أسفل الشهادة" data-en="The certificate number is located at the bottom of the certificate">رقم الشهادة موجود في أسفل الشهادة</p>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading hidden" id="loading">
+            <div class="spinner"></div>
+            <p data-ar="جاري التحقق..." data-en="Verifying...">جاري التحقق...</p>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result hidden" id="result"></div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p data-ar="© 2026 MakeFlow Ai Academy. جميع الحقوق محفوظة" data-en="© 2026 MakeFlow Ai Academy. All rights reserved">© 2026 MakeFlow Ai Academy. جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <script src="certificates-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أكاديمية MakeFlow للذكاء الاصطناعي — الأكاديمية العربية الأولى المتخصصة</title>
+<link rel="icon" href="images/trans.png" type="image/png">
+<meta name="description" content="تعلّم الذكاء الاصطناعي على يد مهندسين يبنونه يومياً. ستة مسارات متخصصة: هندسة الأوامر، وكلاء الذكاء الاصطناعي، التصميم، الإخراج السينمائي، البرمجة بالذكاء الاصطناعي، والمعلم الذكي.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D3B4C;
+    --navy-deep: #082330;
+    --navy-soft: #164658;
+    --blue: #1D85B8;
+    --blue-deep: #16688E;
+    --teal: #3DB3BC;
+    --teal-soft: #7FCDD3;
+    --white: #FFFFFF;
+    --paper: #FAFBFC;
+    --paper-warm: #F5F7F8;
+    --border: #E5E9EB;
+    --border-soft: #EEF1F3;
+    --gray-700: #3A4A52;
+    --gray-500: #6B7A82;
+    --gray-400: #8C9AA2;
+    --green: #25D366;
+    --amber: #F59E0B;
+    --grad-brand: linear-gradient(135deg, #3DB3BC 0%, #1D85B8 100%);
+    --grad-brand-soft: linear-gradient(135deg, rgba(61,179,188,0.08) 0%, rgba(29,133,184,0.08) 100%);
+    --shadow-card: 0 1px 2px rgba(13,59,76,0.04), 0 8px 24px rgba(13,59,76,0.06);
+    --shadow-card-hover: 0 4px 8px rgba(13,59,76,0.06), 0 24px 48px rgba(13,59,76,0.12);
+    --radius: 20px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Tajawal', 'Manrope', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    line-height: 1.7;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  body[data-lang="en"] {
+    direction: ltr;
+    font-family: 'Manrope', 'Tajawal', sans-serif;
+  }
+
+  body[data-lang="en"] .lang-ar { display: none; }
+  body[data-lang="ar"] .lang-en { display: none; }
+
+  body[data-lang="en"] h1,
+  body[data-lang="en"] h2,
+  body[data-lang="en"] h3,
+  body[data-lang="en"] .section-title {
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  ::selection { background: rgba(61,179,188,0.25); }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .nav-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-brand img { height: 38px; width: auto; object-fit: contain; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray-700);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--blue); }
+
+  .nav-actions { display: flex; align-items: center; gap: 14px; }
+
+  .lang-toggle {
+    display: flex;
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 3px;
+  }
+
+  .lang-toggle button {
+    border: none;
+    background: transparent;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--gray-500);
+    font-family: inherit;
+    transition: all 0.25s;
+  }
+
+  .lang-toggle button.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--grad-brand);
+    color: var(--white);
+    box-shadow: 0 4px 16px rgba(29,133,184,0.28);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(29,133,184,0.36); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--border);
+  }
+
+  .btn-secondary:hover { border-color: var(--teal); color: var(--blue); }
+
+  .btn-whatsapp {
+    background: var(--green);
+    color: var(--white);
+    box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+  }
+
+  .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+
+  .btn svg { flex-shrink: 0; }
+
+  .nav-cta { padding: 10px 22px; font-size: 14px; }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% -5%, rgba(61,179,188,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 105%, rgba(29,133,184,0.10) 0%, transparent 60%),
+      var(--white);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(13,59,76,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13,59,76,0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 65% at 50% 40%, black 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 40%, black 20%, transparent 75%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 84px 28px 96px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: var(--grad-brand-soft);
+    border: 1px solid rgba(61,179,188,0.3);
+    border-radius: 100px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 26px;
+  }
+
+  .hero-eyebrow .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 2.4s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(61,179,188,0.5); }
+    50% { box-shadow: 0 0 0 7px rgba(61,179,188,0); }
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 4.6vw, 56px);
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    margin-bottom: 22px;
+    color: var(--navy-deep);
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  body[data-lang="en"] .hero h1 em { font-family: 'Instrument Serif', serif; font-weight: 400; }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--gray-700);
+    line-height: 1.85;
+    margin-bottom: 32px;
+    max-width: 540px;
+  }
+
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--gray-500);
+  }
+
+  .hero-trust .avatars { display: flex; }
+  .hero-trust .avatars span {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 2.5px solid var(--white);
+    background: var(--grad-brand);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    margin-inline-start: -10px;
+  }
+  .hero-trust .avatars span:first-child { margin-inline-start: 0; }
+
+  .hero-visual { position: relative; }
+
+  .hero-visual img {
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 24px 64px rgba(13,59,76,0.18);
+    display: block;
+  }
+
+  .hero-visual::before {
+    content: "";
+    position: absolute;
+    inset: -16px;
+    background: var(--grad-brand);
+    opacity: 0.1;
+    border-radius: 32px;
+    transform: rotate(-2.5deg);
+    z-index: -1;
+  }
+
+  .hero-float-card {
+    position: absolute;
+    bottom: 26px;
+    inset-inline-start: -22px;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 14px 20px;
+    box-shadow: 0 12px 36px rgba(13,59,76,0.16);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: floaty 5s ease-in-out infinite;
+  }
+
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+  }
+
+  .hero-float-card .fc-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: var(--grad-brand-soft);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue);
+  }
+
+  .hero-float-card .fc-title { font-size: 14px; font-weight: 800; color: var(--navy); }
+  .hero-float-card .fc-sub { font-size: 12px; color: var(--gray-500); }
+
+  /* ============ STATS ============ */
+  .stats-bar {
+    background: var(--navy-deep);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-bar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 120% at 50% -20%, rgba(61,179,188,0.18) 0%, transparent 60%);
+  }
+
+  .stats-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 48px 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    position: relative;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-value {
+    font-size: clamp(34px, 3.6vw, 48px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .stat-value sup {
+    font-size: 0.55em;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+  }
+
+  .stat-label { font-size: 14.5px; color: rgba(255,255,255,0.65); font-weight: 500; }
+
+  /* ============ SECTIONS COMMON ============ */
+  section { position: relative; }
+
+  .section-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 96px 28px;
+  }
+
+  .section-header {
+    max-width: 680px;
+    margin-bottom: 56px;
+  }
+
+  .section-header.center { margin-inline: auto; text-align: center; }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  body[data-lang="ar"] .section-eyebrow { letter-spacing: 0; }
+
+  .section-eyebrow::before {
+    content: "";
+    width: 26px; height: 2px;
+    background: var(--grad-brand);
+    border-radius: 2px;
+  }
+
+  .section-header.center .section-eyebrow::after {
+    content: "";
+    width: 26px; height: 2px;
+    background: var(--grad-brand);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 3.4vw, 42px);
+    font-weight: 900;
+    line-height: 1.35;
+    color: var(--navy-deep);
+    letter-spacing: -0.5px;
+  }
+
+  .section-title em {
+    font-style: normal;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  body[data-lang="en"] .section-title em { font-family: 'Instrument Serif', serif; font-weight: 400; }
+
+  .section-sub {
+    margin-top: 16px;
+    font-size: 17px;
+    color: var(--gray-500);
+    line-height: 1.8;
+  }
+
+  /* ============ TRACKS ============ */
+  .tracks-section { background: var(--paper); }
+
+  .level-filter {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .filter-btn {
+    padding: 9px 22px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-500);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.25s;
+  }
+
+  .filter-btn:hover { border-color: var(--teal); color: var(--blue); }
+
+  .filter-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+  }
+
+  .tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .track-card {
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+
+  .track-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    height: 4px;
+    background: var(--grad-brand);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .track-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(61,179,188,0.4);
+  }
+
+  .track-card:hover::before { opacity: 1; }
+
+  .track-card.hidden-track { display: none; }
+
+  .track-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .track-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: var(--grad-brand-soft);
+    border: 1px solid rgba(61,179,188,0.25);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue);
+  }
+
+  .track-level {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 13px;
+    border-radius: 100px;
+  }
+
+  .level-beginner { background: rgba(61,179,188,0.12); color: var(--blue-deep); }
+  .level-intermediate { background: rgba(245,158,11,0.12); color: #B45309; }
+  .level-advanced { background: rgba(13,59,76,0.1); color: var(--navy); }
+
+  .track-card h3 {
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--navy-deep);
+    line-height: 1.4;
+  }
+
+  .track-card p {
+    font-size: 15px;
+    color: var(--gray-500);
+    line-height: 1.75;
+    margin-bottom: 22px;
+    flex-grow: 1;
+  }
+
+  .track-meta {
+    display: flex;
+    gap: 16px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--border);
+    font-size: 13.5px;
+    color: var(--gray-500);
+    font-weight: 600;
+  }
+
+  .track-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .track-meta svg { color: var(--teal); }
+
+  .track-card .track-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 16px;
+    font-size: 14.5px;
+    font-weight: 800;
+    color: var(--blue);
+  }
+
+  .track-card .track-link svg { transition: transform 0.25s; }
+  .track-card:hover .track-link svg { transform: translateX(-5px); }
+  body[data-lang="en"] .track-card .track-link svg { transform: scaleX(-1); }
+  body[data-lang="en"] .track-card:hover .track-link svg { transform: translateX(5px) scaleX(-1); }
+
+  /* ============ TESTIMONIALS ============ */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial {
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .testimonial:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
+
+  .testimonial.featured {
+    grid-row: span 2;
+    background: var(--navy-deep);
+    color: var(--white);
+    border: none;
+    justify-content: center;
+  }
+
+  .testimonial .stars { display: flex; gap: 3px; color: var(--amber); }
+
+  .testimonial-text {
+    font-size: 15.5px;
+    line-height: 1.9;
+    color: var(--gray-700);
+    flex-grow: 1;
+  }
+
+  .testimonial.featured .testimonial-text { color: rgba(255,255,255,0.88); font-size: 17px; }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-soft);
+  }
+
+  .testimonial.featured .testimonial-author { border-top-color: rgba(255,255,255,0.14); }
+
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--grad-brand);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .author-name { font-weight: 800; font-size: 15px; color: var(--navy); }
+  .testimonial.featured .author-name { color: var(--white); }
+
+  .author-track {
+    font-size: 12.5px;
+    color: var(--gray-500);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .testimonial.featured .author-track { color: var(--teal-soft); }
+
+  /* ============ INSTRUCTORS ============ */
+  .instructors-section { background: var(--paper); }
+
+  .instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .instructor {
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 36px;
+    display: flex;
+    gap: 26px;
+    align-items: flex-start;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .instructor:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
+
+  .instructor-avatar { flex-shrink: 0; }
+
+  .instructor-avatar img {
+    width: 108px; height: 108px;
+    border-radius: 22px;
+    object-fit: cover;
+    border: 3px solid rgba(61,179,188,0.3);
+  }
+
+  .instructor-name { font-size: 22px; font-weight: 800; color: var(--navy-deep); margin-bottom: 4px; }
+
+  .instructor-role {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 14px;
+  }
+
+  .instructor-bio {
+    font-size: 14.5px;
+    color: var(--gray-700);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+
+  .instructor-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .chip {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 13px;
+    border-radius: 100px;
+    background: var(--grad-brand-soft);
+    border: 1px solid rgba(61,179,188,0.25);
+    color: var(--blue-deep);
+  }
+
+  /* ============ FINAL CTA ============ */
+  .final-cta {
+    background: var(--navy-deep);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 45% 70% at 15% 20%, rgba(61,179,188,0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 70% at 85% 90%, rgba(29,133,184,0.16) 0%, transparent 60%);
+  }
+
+  .final-cta-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 100px 28px;
+    text-align: center;
+    position: relative;
+  }
+
+  .final-cta h2 {
+    font-size: clamp(28px, 3.6vw, 44px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 18px;
+  }
+
+  .final-cta h2 em {
+    font-style: normal;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .final-cta p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 36px;
+    line-height: 1.85;
+  }
+
+  .final-cta .hero-ctas { justify-content: center; margin-bottom: 0; }
+
+  .final-cta-note {
+    margin-top: 22px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--navy-deep);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 64px 28px 32px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 44px;
+  }
+
+  .footer-brand img { height: 36px; width: auto; margin-bottom: 14px; }
+
+  .footer-brand-desc {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.85;
+    max-width: 300px;
+  }
+
+  .footer-mono {
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .footer-col-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 18px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+  .footer-col a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--teal-soft); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-socials { display: flex; gap: 10px; }
+
+  .footer-social {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.7);
+    transition: all 0.25s;
+  }
+
+  .footer-social:hover { background: var(--grad-brand); color: var(--white); transform: translateY(-2px); }
+
+  .footer-social svg { width: 17px; height: 17px; }
+
+  /* ============ MOBILE STICKY CTA ============ */
+  .mobile-sticky-cta {
+    position: fixed;
+    bottom: 18px;
+    inset-inline: 18px;
+    z-index: 90;
+    background: var(--green);
+    color: var(--white);
+    border-radius: 100px;
+    padding: 14px 22px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+    transform: translateY(120%);
+    transition: transform 0.35s;
+  }
+
+  .mobile-sticky-cta.visible { transform: translateY(0); }
+
+  /* ============ REVEAL ANIMATION ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.in-view { opacity: 1; transform: none; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; padding: 60px 28px 72px; }
+    .hero-sub { max-width: none; }
+    .hero-visual { max-width: 560px; }
+    .tracks-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonial.featured { grid-row: auto; grid-column: span 2; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .section-inner { padding: 64px 22px; }
+    .tracks-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial.featured { grid-column: auto; }
+    .instructors-grid { grid-template-columns: 1fr; }
+    .instructor { flex-direction: column; align-items: center; text-align: center; }
+    .instructor-chips { justify-content: center; }
+    .hero-float-card { inset-inline-start: 10px; bottom: 14px; padding: 10px 16px; }
+    .mobile-sticky-cta { display: flex; }
+    .footer-bottom { justify-content: center; text-align: center; }
+  }
+</style>
+</head>
+<body data-lang="ar">
+
+<!-- ========== NAV ========== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="images/academy_logo_dark.png" alt="MakeFlow AI Academy">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tracks"><span class="lang-ar">المسارات</span><span class="lang-en">Tracks</span></a></li>
+      <li><a href="workshop.html"><span class="lang-ar">ورشة الريلز</span><span class="lang-en">Reels Workshop</span></a></li>
+      <li><a href="#testimonials"><span class="lang-ar">آراء الطلاب</span><span class="lang-en">Testimonials</span></a></li>
+      <li><a href="#instructors"><span class="lang-ar">المدربون</span><span class="lang-en">Instructors</span></a></li>
+      <li><a href="verify/"><span class="lang-ar">تحقق من شهادة</span><span class="lang-en">Verify Certificate</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="active" data-lang-btn="ar" onclick="setLang('ar')">عربي</button>
+        <button data-lang-btn="en" onclick="setLang('en')">EN</button>
+      </div>
+      <a class="btn btn-primary nav-cta" href="#tracks">
+        <span class="lang-ar">احجز مقعدك</span>
+        <span class="lang-en">Book Your Seat</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        <span class="lang-ar">الأكاديمية العربية الأولى المتخصصة بالذكاء الاصطناعي</span>
+        <span class="lang-en">The First Specialized Arabic AI Academy</span>
+      </div>
+      <h1>
+        <span class="lang-ar">العالم تغيّر. <em>هل أنت جاهز؟</em> تعلّم الذكاء الاصطناعي ممن يبنيه فعلاً.</span>
+        <span class="lang-en">The world has changed. <em>Are you ready?</em> Learn AI from engineers who build it daily.</span>
+      </h1>
+      <p class="hero-sub">
+        <span class="lang-ar">ستة مسارات متخصصة تأخذك من الفضول إلى الاحتراف — من هندسة الأوامر إلى الإخراج السينمائي والبرمجة بالذكاء الاصطناعي. كل ما نُدرّسه خرج من مشاريع حقيقية: جرّبناه، طوّرناه، ثم علّمناه.</span>
+        <span class="lang-en">Six specialized tracks taking you from curiosity to mastery — from prompt engineering to AI film direction and Vibe Coding. Everything we teach comes from real projects: we tested it, refined it, then taught it.</span>
+      </p>
+      <div class="hero-ctas">
+        <a href="#tracks" class="btn btn-primary">
+          <span class="lang-ar">استكشف المسارات الستة</span>
+          <span class="lang-en">Explore the 6 Tracks</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transform: scaleX(-1);"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://wa.me/970597034066?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D8%B3%D8%A7%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%A3%D9%83%D8%A7%D8%AF%D9%8A%D9%85%D9%8A%D8%A9" target="_blank" rel="noopener" class="btn btn-whatsapp">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <span class="lang-ar">استشارة مجانية</span>
+          <span class="lang-en">Free Consultation</span>
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="avatars">
+          <span>م</span><span>أ</span><span>هـ</span><span>و</span>
+        </div>
+        <span class="lang-ar">انضم إلى أكثر من ٥٠٠ خرّيج بدأوا رحلتهم معنا</span>
+        <span class="lang-en">Join 500+ graduates who started their journey with us</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="images/hero.png" alt="MakeFlow AI Academy">
+      <div class="hero-float-card">
+        <div class="fc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg>
+        </div>
+        <div>
+          <div class="fc-title">
+            <span class="lang-ar">شهادة موثقة</span>
+            <span class="lang-en">Verified Certificate</span>
+          </div>
+          <div class="fc-sub">
+            <span class="lang-ar">قابلة للتحقق إلكترونياً</span>
+            <span class="lang-en">Publicly verifiable online</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STATS ========== -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat reveal">
+      <div class="stat-value">500<sup>+</sup></div>
+      <div class="stat-label">
+        <span class="lang-ar">خرّيج في مساراتنا وورشاتنا</span>
+        <span class="lang-en">Graduates across tracks & workshops</span>
+      </div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-value">4<sup>+</sup></div>
+      <div class="stat-label">
+        <span class="lang-ar">سنوات من الخبرة العملية</span>
+        <span class="lang-en">Years of hands-on experience</span>
+      </div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-value">6</div>
+      <div class="stat-label">
+        <span class="lang-ar">مسارات تدريبية متخصصة</span>
+        <span class="lang-en">Specialized training tracks</span>
+      </div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-value">1<sup>st</sup></div>
+      <div class="stat-label">
+        <span class="lang-ar">أكاديمية عربية متخصصة بالـ AI</span>
+        <span class="lang-en">Specialized Arabic AI academy</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TRACKS ========== -->
+<section id="tracks" class="tracks-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">
+        <span class="lang-ar">المسارات التدريبية</span>
+        <span class="lang-en">Training Tracks</span>
+      </div>
+      <h2 class="section-title">
+        <span class="lang-ar">ستة مسارات. <em>هدف واحد:</em> أن تحترف الذكاء الاصطناعي.</span>
+        <span class="lang-en">Six tracks. <em>One goal:</em> mastering AI.</span>
+      </h2>
+      <p class="section-sub">
+        <span class="lang-ar">كل مسار مصمم ليأخذك من مستواك الحالي إلى مهارة حقيقية قابلة للتطبيق والربح — بشهادة موثقة قابلة للتحقق.</span>
+        <span class="lang-en">Each track is designed to take you from your current level to a real, applicable, profitable skill — with a verifiable certificate.</span>
+      </p>
+    </div>
+
+    <div class="level-filter reveal">
+      <button class="filter-btn active" data-filter="all">
+        <span class="lang-ar">جميع المستويات</span><span class="lang-en">All Levels</span>
+      </button>
+      <button class="filter-btn" data-filter="beginner">
+        <span class="lang-ar">مبتدئ</span><span class="lang-en">Beginner</span>
+      </button>
+      <button class="filter-btn" data-filter="intermediate">
+        <span class="lang-ar">متوسط</span><span class="lang-en">Intermediate</span>
+      </button>
+      <button class="filter-btn" data-filter="advanced">
+        <span class="lang-ar">متقدم</span><span class="lang-en">Advanced</span>
+      </button>
+    </div>
+
+    <div class="tracks-grid" id="tracksGrid"></div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-header center reveal">
+      <div class="section-eyebrow">
+        <span class="lang-ar">آراء الطلاب</span>
+        <span class="lang-en">Student Testimonials</span>
+      </div>
+      <h2 class="section-title">
+        <span class="lang-ar">ماذا يقول <em>خرّيجونا؟</em></span>
+        <span class="lang-en">What our <em>graduates</em> say</span>
+      </h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial featured reveal">
+        <div class="stars">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">
+          <span class="lang-ar">"بشكل عام الدورة رائعة جداً، والمحاضر سلس ومرح ويستطيع إيصال الفكرة بكل سهولة. الدورة شاملة لكل التفاصيل النظرية والعلمية والعملية — ممتازة من جميع النواحي."</span>
+          <span class="lang-en">"Overall the course is wonderful. The instructor is smooth, cheerful, and delivers ideas with ease. The course covers every theoretical, scientific, and practical detail — excellent in every aspect."</span>
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">أ</div>
+          <div>
+            <div class="author-name">
+              <span class="lang-ar">أشرف صيدم</span>
+              <span class="lang-en">Ashraf Seydam</span>
+            </div>
+            <div class="author-track">
+              <span class="lang-ar">مصمم AI · مخرج AI</span>
+              <span class="lang-en">AI Designer · AI Director</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">
+          <span class="lang-ar">"بصراحة دورة مفيدة كثير، خصوصاً للي مثلي ما بيعرف شي عن المونتاج. بفيد فيها كثير لقدّام، ومهارة حلوة الواحد يكتسبها — وغير ممكن تتيح فرص عمل كمان."</span>
+          <span class="lang-en">"Honestly a very useful course, especially for someone like me who knew nothing about editing. It benefits me a lot going forward — a great skill to gain, and it could even open job opportunities."</span>
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">م</div>
+          <div>
+            <div class="author-name">
+              <span class="lang-ar">مريم مرتجى</span>
+              <span class="lang-en">Mariam Mortaja</span>
+            </div>
+            <div class="author-track">
+              <span class="lang-ar">مسار مخرج AI</span>
+              <span class="lang-en">AI Director Track</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">
+          <span class="lang-ar">"الدورة فادتني جداً في تخصصي، وسهّلت عليّ تصميم الصور وإنتاج الفيديو. بشكر الأستاذ جهاد — من أمهر المهندسين في المجال — على توصيله المعلومات بسلاسة."</span>
+          <span class="lang-en">"The course benefited me greatly in my field and made image design and video production much easier. I thank Eng. Jihad — one of the most skilled engineers in the field — for delivering information so smoothly."</span>
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">أ</div>
+          <div>
+            <div class="author-name">
+              <span class="lang-ar">أسماء قاسم</span>
+              <span class="lang-en">Asmaa Qasem</span>
+            </div>
+            <div class="author-track">
+              <span class="lang-ar">مسار مخرج AI</span>
+              <span class="lang-en">AI Director Track</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">
+          <span class="lang-ar">"الدورة مفيدة جداً للي حابين يدخلوا مجال الذكاء الاصطناعي دون خبرة مسبقة. تعطيهم تغذية عن أفضل وأحدث الأدوات المتوفرة في السوق اليوم، وتوفر عليهم الاشتراك من أداة لأداة — لأنهم كلهم متوفرين في الموقع."</span>
+          <span class="lang-en">"The course is very useful for those wanting to enter AI with no prior experience. It feeds you the best and newest tools on the market today, and saves you subscribing tool-by-tool — they're all available on the platform."</span>
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">م</div>
+          <div>
+            <div class="author-name">
+              <span class="lang-ar">ميساء داوود</span>
+              <span class="lang-en">Maysaa Dawood</span>
+            </div>
+            <div class="author-track">
+              <span class="lang-ar">مسار مصمم AI</span>
+              <span class="lang-en">AI Designer Track</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">
+          <span class="lang-ar">"الدورة ممتازة بالنسبة للمنصة — الشرح واضح وسهل، مشكورين على جهدكم. الدكتور ما قصّر في الإجابة على الأسئلة، وأسلوب الشرح ممتاز."</span>
+          <span class="lang-en">"Excellent course and platform — the explanation is clear and simple, thanks for your efforts. The instructor never fell short in answering questions, and the teaching style is excellent."</span>
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">و</div>
+          <div>
+            <div class="author-name">
+              <span class="lang-ar">وليد أسامة</span>
+              <span class="lang-en">Waleed Osama</span>
+            </div>
+            <div class="author-track">
+              <span class="lang-ar">مسار مخرج AI</span>
+              <span class="lang-en">AI Director Track</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== INSTRUCTORS ========== -->
+<section id="instructors" class="instructors-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">
+        <span class="lang-ar">من يُدرّبك</span>
+        <span class="lang-en">Meet Your Instructors</span>
+      </div>
+      <h2 class="section-title">
+        <span class="lang-ar">مهندسون يبنون كل يوم — <em>لا</em> منظّرون.</span>
+        <span class="lang-en">Working engineers, <em>not</em> lecture-circuit personalities.</span>
+      </h2>
+    </div>
+    <div class="instructors-grid">
+      <div class="instructor reveal">
+        <div class="instructor-avatar"><img src="images/jihad.png" alt="Jihad Hijazi"></div>
+        <div class="instructor-info">
+          <h3 class="instructor-name">
+            <span class="lang-ar">جهاد حجازي</span>
+            <span class="lang-en">Jihad Hijazi</span>
+          </h3>
+          <div class="instructor-role">
+            <span class="lang-ar">المؤسس · المدرب الرئيسي</span>
+            <span class="lang-en">Founder · Lead Instructor</span>
+          </div>
+          <p class="instructor-bio">
+            <span class="lang-ar">مؤسس وكالة MakeFlow للأتمتة بالذكاء الاصطناعي، بخبرة تتجاوز ٤ سنوات في التسويق الرقمي وهندسة الذكاء الاصطناعي. بنى أنظمة أتمتة لعيادات ومتاجر إلكترونية ومنصات SaaS في المنطقة العربية.</span>
+            <span class="lang-en">Founder of MakeFlow AI automation agency with 4+ years in digital marketing and AI engineering. Built production systems for clinics, e-commerce brands, and SaaS platforms across the MENA region.</span>
+          </p>
+          <div class="instructor-chips">
+            <span class="chip">AI Automation</span>
+            <span class="chip">Prompt Engineering</span>
+            <span class="chip">Agency Owner</span>
+          </div>
+        </div>
+      </div>
+      <div class="instructor reveal">
+        <div class="instructor-avatar"><img src="images/mahmood.png" alt="Mahmoud Adhair"></div>
+        <div class="instructor-info">
+          <h3 class="instructor-name">
+            <span class="lang-ar">محمود اضهير</span>
+            <span class="lang-en">Mahmoud Adhair</span>
+          </h3>
+          <div class="instructor-role">
+            <span class="lang-ar">مهندس ذكاء اصطناعي أول · مدرب</span>
+            <span class="lang-en">Senior AI Engineer · Instructor</span>
+          </div>
+          <p class="instructor-bio">
+            <span class="lang-ar">مهندس ذكاء اصطناعي متخصص في بناء الوكلاء الذاتيين وأنظمة الأتمتة. يُصمّم ويُطلق حلول AI لعملاء MakeFlow — من بوتات تتعامل مع آلاف المحادثات يومياً إلى وكلاء يعملون بلا توقّف.</span>
+            <span class="lang-en">Senior AI engineer with deep expertise in autonomous agent architectures, workflow automation, and LLM integration. Designs and ships AI pipelines powering MakeFlow's client operations — from chatbots handling thousands of conversations to multi-agent systems running 24/7.</span>
+          </p>
+          <div class="instructor-chips">
+            <span class="chip">AI Agents</span>
+            <span class="chip">n8n</span>
+            <span class="chip">Python</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="final-cta">
+  <div class="final-cta-inner reveal">
+    <h2>
+      <span class="lang-ar">جاهز تبدأ رحلتك مع <em>الذكاء الاصطناعي؟</em></span>
+      <span class="lang-en">Ready to start your <em>AI journey?</em></span>
+    </h2>
+    <p>
+      <span class="lang-ar">احجز استشارتك المجانية اليوم — نساعدك تختار المسار الأنسب لمستواك وأهدافك، ونجيب على كل أسئلتك.</span>
+      <span class="lang-en">Book your free consultation today — we'll help you choose the track that fits your level and goals, and answer all your questions.</span>
+    </p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/970597034066?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9" target="_blank" rel="noopener" class="btn btn-whatsapp">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span class="lang-ar">احجز عبر واتساب</span>
+        <span class="lang-en">Book via WhatsApp</span>
+      </a>
+      <a href="mailto:contact@makeflow.tech" class="btn btn-secondary" style="color: var(--white); border-color: rgba(255,255,255,0.25);">
+        <span class="lang-ar">راسلنا عبر البريد</span>
+        <span class="lang-en">Email Us</span>
+      </a>
+    </div>
+    <div class="final-cta-note">
+      <span class="lang-ar">شهادة موثقة قابلة للتحقق إلكترونياً مع كل مسار.</span>
+      <span class="lang-en">A verifiable certificate comes with every track.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/academy_logo_dark.png" alt="MakeFlow AI Academy" style="filter: brightness(0) invert(1);">
+        <p class="footer-brand-desc">
+          <span class="lang-ar">الأكاديمية العربية الأولى في الذكاء الاصطناعي. نُجرّب، نبني، ونُعلّم — من الميدان مباشرة.</span>
+          <span class="lang-en">The first specialized Arabic AI academy. We test, build, and teach — straight from the field.</span>
+        </p>
+        <div class="footer-mono">Wyoming, USA · Est. 2025</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">
+          <span class="lang-ar">الأكاديمية</span>
+          <span class="lang-en">Academy</span>
+        </div>
+        <ul>
+          <li><a href="#tracks"><span class="lang-ar">المسارات</span><span class="lang-en">Tracks</span></a></li>
+          <li><a href="#testimonials"><span class="lang-ar">آراء الطلاب</span><span class="lang-en">Testimonials</span></a></li>
+          <li><a href="#instructors"><span class="lang-ar">المدربون</span><span class="lang-en">Instructors</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">
+          <span class="lang-ar">الموارد</span>
+          <span class="lang-en">Resources</span>
+        </div>
+        <ul>
+          <li><a href="verify/"><span class="lang-ar">تحقق من شهادة</span><span class="lang-en">Verify Certificate</span></a></li>
+          <li><a href="https://www.facebook.com/aiacademymakeflow" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.instagram.com/aiacademymakeflow" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">
+          <span class="lang-ar">التواصل</span>
+          <span class="lang-en">Contact</span>
+        </div>
+        <ul>
+          <li><a href="mailto:contact@makeflow.tech">contact@makeflow.tech</a></li>
+          <li><a href="https://wa.me/970597034066" target="_blank" rel="noopener" dir="ltr">+970 597 034 066</a></li>
+          <li><a href="https://makeflow.tech" target="_blank" rel="noopener">makeflow.tech</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <span class="lang-ar">© 2025–2026 أكاديمية MakeFlow للذكاء الاصطناعي · جميع الحقوق محفوظة</span>
+        <span class="lang-en">© 2025–2026 MakeFlow AI Academy · All rights reserved</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/aiacademymakeflow" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/aiacademymakeflow" target="_blank" rel="noopener" class="footer-social" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="https://wa.me/970597034066" target="_blank" rel="noopener" class="footer-social" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== MOBILE STICKY CTA ========== -->
+<a href="https://wa.me/970597034066?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%85%D9%82%D8%B9%D8%AF%D9%8A" target="_blank" rel="noopener" class="mobile-sticky-cta" id="mobileSticky">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  <span class="lang-ar">احجز مقعدك الآن</span>
+  <span class="lang-en">Book Your Seat</span>
+</a>
+
+<script src="tracks-data.js"></script>
+<script>
+  const ICONS = {
+    terminal: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+    workflow: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h6a2 2 0 0 1 2 2V14"/><path d="M14 17.5H8a2 2 0 0 1-2-2V10"/></svg>',
+    palette: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="9.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="9.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="8" cy="14.5" r="1.2" fill="currentColor" stroke="none"/><path d="M12 21a9 9 0 0 0 9-9c0-1.5-1-2.5-2.5-2.5h-2a2 2 0 0 1-2-2c0-1.5-1-2-2.5-2"/></svg>',
+    clapperboard: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3l.8 2.6z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z"/></svg>',
+    code: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+    graduation: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 10v6"/></svg>'
+  };
+
+  const LEVELS = {
+    beginner: { ar: "مبتدئ", en: "Beginner" },
+    intermediate: { ar: "متوسط", en: "Intermediate" },
+    advanced: { ar: "متقدم", en: "Advanced" }
+  };
+
+  let currentLang = "ar";
+
+  function renderTracks() {
+    const grid = document.getElementById("tracksGrid");
+    grid.innerHTML = window.TRACKS.map(t => `
+      <a href="track.html?track=${t.id}" class="track-card reveal in-view" data-level="${t.level}">
+        <div class="track-top">
+          <div class="track-icon">${ICONS[t.icon]}</div>
+          <span class="track-level level-${t.level}">${LEVELS[t.level][currentLang]}</span>
+        </div>
+        <h3>${t.title[currentLang]}</h3>
+        <p>${t.short[currentLang]}</p>
+        <div class="track-meta">
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+            ${t.hours} ${currentLang === "ar" ? "ساعة" : "hours"}
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            ${t.weeks} ${currentLang === "ar" ? "أسابيع" : "weeks"}
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v6c0 5-3.5 9-9 10-5.5-1-9-5-9-10V6l9-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+            ${currentLang === "ar" ? "شهادة موثقة" : "Certificate"}
+          </span>
+        </div>
+        <span class="track-link">
+          ${currentLang === "ar" ? "اكتشف المسار" : "Explore the track"}
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        </span>
+      </a>
+    `).join("");
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.body.dataset.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = lang;
+    document.querySelectorAll(".lang-toggle button").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.langBtn === lang);
+    });
+    renderTracks();
+    applyFilter(document.querySelector(".filter-btn.active")?.dataset.filter || "all");
+  }
+
+  function applyFilter(level) {
+    document.querySelectorAll(".track-card").forEach(card => {
+      card.classList.toggle("hidden-track", level !== "all" && card.dataset.level !== level);
+    });
+  }
+
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      applyFilter(btn.dataset.filter);
+    });
+  });
+
+  renderTracks();
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("in-view");
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+  // Mobile sticky CTA after hero
+  const stickyCta = document.getElementById("mobileSticky");
+  const heroSection = document.querySelector(".hero");
+  window.addEventListener("scroll", () => {
+    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+    stickyCta.classList.toggle("visible", window.scrollY > heroBottom - 200);
+  }, { passive: true });
+</script>
+
+</body>
+</html>
