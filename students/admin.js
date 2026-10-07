@@ -15,7 +15,7 @@ const secondaryAuth = secondaryApp.auth();
 const secondaryStorage = secondaryApp.storage();
 
 const EMAIL_DOMAIN = "@makeflow.tech";
-const ADMIN_PASSWORD = "MakeFlow@2026";
+const ADMIN_EMAIL = "admin@makeflow.tech";
 
 let coursesCache = [];
 let videosCache = [];
@@ -128,30 +128,40 @@ function getFilesFromForm() {
 }
 
 // ===== Admin Auth =====
-function adminLogin() {
+// The password is verified by Firebase Auth (never stored in this file), and
+// Firestore rules (see firestore.rules) only allow ADMIN_EMAIL to write.
+const mainAuth = firebase.auth();
+let panelLoaded = false;
+
+async function adminLogin() {
     const pass = document.getElementById('adminPass').value;
     const msg = document.getElementById('authMsg');
-    if (pass === ADMIN_PASSWORD) {
-        sessionStorage.setItem('adminAuth', 'true');
-        document.getElementById('authGate').classList.add('hidden');
-        document.getElementById('adminPanel').classList.remove('hidden');
-        loadAll();
-    } else {
+    try {
+        await mainAuth.signInWithEmailAndPassword(ADMIN_EMAIL, pass);
+    } catch (e) {
         msg.className = 'msg msg-error';
         msg.textContent = 'كلمة المرور خاطئة!';
     }
 }
 
-function adminLogout() {
-    sessionStorage.removeItem('adminAuth');
+async function adminLogout() {
+    await mainAuth.signOut();
     window.location.reload();
 }
 
-if (sessionStorage.getItem('adminAuth') === 'true') {
-    document.getElementById('authGate').classList.add('hidden');
-    document.getElementById('adminPanel').classList.remove('hidden');
-    loadAll();
-}
+mainAuth.onAuthStateChanged(user => {
+    if (user && user.email === ADMIN_EMAIL) {
+        document.getElementById('authGate').classList.add('hidden');
+        document.getElementById('adminPanel').classList.remove('hidden');
+        if (!panelLoaded) {
+            panelLoaded = true;
+            loadAll();
+        }
+    } else if (user) {
+        // a student session is not an admin session
+        mainAuth.signOut();
+    }
+});
 
 async function loadAll() {
     await loadCourses();
